@@ -8,7 +8,6 @@ of a given column in a given csv file.
 import argparse
 import math
 import sys
-import pandas as pd
 
 
 def items(filename):
@@ -45,22 +44,22 @@ def count(filename):
 def calc_mean(filename, key):
     """Return the mean of one column of a .csv file."""
     add = 0
-    count = 0
+    counter = 0
     for item in items(filename):
         add += item[key]
-        count += 1
-    return add / count
+        counter += 1
+    return add / counter
 
 
 def calc_stddev(filename, key):
     """Return Standard deviation of one column of a .csv file."""
     squaresum = 0
-    count = 0
+    counter = 0
     mean = calc_mean(filename, key)
     for item in items(filename):
         squaresum += (item[key] - mean) ** 2
-        count += 1
-    return math.sqrt(squaresum / count)
+        counter += 1
+    return math.sqrt(squaresum / counter)
 
 
 def calc_sum(filename, key):
@@ -79,8 +78,8 @@ def calc_variance(filename, key):
 def find_max(filename, key):
     """Find maximum of one column of a .csv file."""
     for item in items(filename):
-            maximum = item[key]
-            break
+        maximum = item[key]
+        break
     for item in items(filename):
         if item[key] > maximum:
             maximum = item[key]
@@ -91,8 +90,8 @@ def find_max(filename, key):
 def find_min(filename, key):
     """Find minimum of one column of a .csv file."""
     for item in items(filename):
-            minimum = item[key]
-            break
+        minimum = item[key]
+        break
     for item in items(filename):
         if item[key] < minimum:
             minimum = item[key]

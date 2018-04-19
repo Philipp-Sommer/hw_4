@@ -23,6 +23,9 @@ from collections import namedtuple
 
 
 def main():
+    """
+    Entry Point if started as designated program.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("infile", help="Text file to be analyzed.")
     args = parser.parse_args()
@@ -49,7 +52,7 @@ def unique_words(words):
         clean = word.strip(string.punctuation).lower()
         if clean in counter:
             counter[clean] += 1
-        elif len(clean) > 0:
+        elif clean:
             counter[clean] = 1
     return counter
 
