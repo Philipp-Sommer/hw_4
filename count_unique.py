@@ -18,6 +18,8 @@ The result is printed to the terminal.
 
 import argparse
 import sys
+import string
+from collections import namedtuple
 
 
 def main():
@@ -42,10 +44,14 @@ def unique_words(words):
 
     `words` - a list of words
     """
-    # TODO: implement the function here; use as many additional functions
-    # as you deem comfortable
-    # then, remove the exception below
-    raise NotImplementedError("You need to implement this function!")
+    counter = {}
+    for word in words:
+        clean = word.strip(string.punctuation).lower()
+        if clean in counter:
+            counter[clean] += 1
+        elif len(clean) > 0:
+            counter[clean] = 1
+    return counter
 
 
 def count_unique_sorted(words):
@@ -58,7 +64,12 @@ def count_unique_sorted(words):
 
     `words` - a list of words
     """
-    raise NotImplementedError("You need to implement this function!")
+    Pair = namedtuple('Pair', ['word', 'count'])
+    tuple_list = []
+    for key, value in unique_words(words).items():
+        tuple_list.append(Pair(key, value))
+    return tuple_list
+
 
 
 if __name__ == "__main__":
