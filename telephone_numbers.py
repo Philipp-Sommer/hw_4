@@ -1,15 +1,17 @@
-#!/usr/bin/env python3
+#!/usr/bin/env/ python3
 
-"""
-This module contains a function to decode telephone numbers.
-
-.. moduleauthor:: Clemens Eichberger <Clemens.Eichberger@edu.uni-graz.at>
-.. moduleauthor:: Philipp Sommer <Philipp.Sommer@edu.uni-graz.at>
-.. moduleauthor:: Theresa Trinker <Theresa.Trinker@edu.uni-graz.at>
-"""
+'''
+.. moduleauthor:: Clemens Eichberger <clemens.eichberger@edu.uni-graz.at>
+'''
 
 def as_numeric(text):
-    """
-    This function decodes telephone numbers.
-    """
-    d = {'a': 2, 'b': 2, 'c': 2, }  # finish this somewhen
+    abc = {'A':2,'B':2,'C':2,'D':3,'E':3,'F':3,'G':4,'H':4,'I':4,'J':5,'K':5,'L':5,'M':6,'N':6,'O':6,'P':7,'Q':7,'R':7,'S':7,'T':8,'U':8,'V':8,'W':9,'X':9,'Y':9,'Z':9}
+    text = text.upper()
+    solution =""
+    for i in text:
+        if i in abc:
+            solution += str(abc[i])
+        else:
+            solution += i
+    return solution
+
