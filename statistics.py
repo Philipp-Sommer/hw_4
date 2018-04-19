@@ -8,6 +8,7 @@ of a given column in a given csv file.
 import argparse
 import math
 import sys
+import pandas as pd
 
 
 def items(filename):
@@ -42,39 +43,60 @@ def count(filename):
 
 
 def calc_mean(filename, key):
-    """
-    """
-    raise NotImplementedError
+    """Return the mean of one column of a .csv file."""
+    add = 0
+    count = 0
+    for item in items(filename):
+        add += item[key]
+        count += 1
+    return add / count
 
 
 def calc_stddev(filename, key):
-    """
-    """
-    raise NotImplementedError
+    """Return Standard deviation of one column of a .csv file."""
+    squaresum = 0
+    count = 0
+    mean = calc_mean(filename, key)
+    for item in items(filename):
+        squaresum += (item[key] - mean) ** 2
+        count += 1
+    return math.sqrt(squaresum / count)
 
 
 def calc_sum(filename, key):
-    """
-    """
-    raise NotImplementedError
+    """Return sum of one column of a .csv file."""
+    add = 0
+    for item in items(filename):
+        add += item[key]
+    return add
 
 
 def calc_variance(filename, key):
-    """
-    """
-    raise NotImplementedError
+    """Return variance of one column of a .csv file."""
+    return calc_stddev(filename, key) ** 2
 
 
 def find_max(filename, key):
-    """
-    """
-    raise NotImplementedError
+    """Find maximum of one column of a .csv file."""
+    for item in items(filename):
+            maximum = item[key]
+            break
+    for item in items(filename):
+        if item[key] > maximum:
+            maximum = item[key]
+    return maximum
+
 
 
 def find_min(filename, key):
-    """
-    """
-    raise NotImplementedError
+    """Find minimum of one column of a .csv file."""
+    for item in items(filename):
+            minimum = item[key]
+            break
+    for item in items(filename):
+        if item[key] < minimum:
+            minimum = item[key]
+    return minimum
 
 
 def main():
