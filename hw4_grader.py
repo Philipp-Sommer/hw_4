@@ -11,14 +11,11 @@ import unittest
 from faker import Faker
 import numpy as np
 
-#import count_unique
-##import make_html_skeleton
-#import fake_news_generator
-#import statistics
-#try:
-    #import telephone_numbers
-#except ModuleNotFoundError:
-    #pass
+# TODO: remove after Python 3.6+ is in widespread use
+try:
+    ModuleNotFoundError
+except NameError:
+    ModuleNotFoundError = ImportError
 
 
 SKEL_NO_SCRIPTS = """<?xml version="1.0"?>
@@ -298,8 +295,10 @@ if __name__ == "__main__":
         module = test.target.split('.')[0]
         try:
             setattr(thismodule, module, importlib.import_module(module))
-        except ModuleNotFoundError:
-            print(test.target, 'not found; 0 points')
+        except ModuleNotFoundError as e:
+            #print(test.target, 'not found; 0 points')
+            print(test.target, 'import error; 0 points')
+            print(e)
             continue
         suite = unittest.defaultTestLoader.loadTestsFromTestCase(test)
         runner = unittest.TextTestRunner()
