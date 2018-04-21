@@ -54,9 +54,9 @@ def main():
     args = parser.parse_args()
     if args.article:
         words = wp.page(args.article).content.split()
-        word_list = clean_words([x for x in words if x])
+        word_list = clean_words(clean_words([x for x in words if x]))
     else:
-        word_list = clean_words(WORD_LIST)
+        word_list = clean_words(clean_words(WORD_LIST))
     seed = args.seed or None
 
     print(fake_news(word_list, seed))
